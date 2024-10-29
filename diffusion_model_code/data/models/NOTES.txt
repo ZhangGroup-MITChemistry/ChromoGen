@@ -1,0 +1,5 @@
+AFTER fixing the DataLoader issue (where the internal_idx wasn't updated), I deleted 
+the files for diffusion_origami_64_no_embed_reduction and restarted it. Anything older used
+the errant files!  
+
+
