@@ -1,0 +1,725 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[top=0.69in,bottom=0.56in,left=1.06in,right=1.38in,footskip=.18in]{geometry}%,footskip=0.75in,marginparwidth=2in]{geometry}
+
+%%%%%%%%%%%%%%%%%
+% Some basic Science Advances formatting
+\usepackage{times} % Use Times New Roman, as in the Science Advances template
+\usepackage{lineno} % Number lines
+\linenumbersep=.81in
+\linenumbers
+\newcommand{\markblankline}{\newline\mbox{}\newline} % From https://tex.stackexchange.com/questions/131644/line-numbering-including-blank-empty-lines, to match the blank line numbering in the Science Advances template
+
+%%%%%%%%%%%%%%%%
+% Remove after finalizing
+\usepackage{lipsum} 
+\usepackage{soul} % for highlighting
+%%%%%%%%%%%%%%%%
+
+% use Unicode characters - try changing the option if you run into troubles with special characters (e.g. umlauts)
+\usepackage[utf8]{inputenc}
+\RequirePackage[pdftex,colorlinks,linkcolor=black,citecolor=black,urlcolor=black,filecolor=black]{hyperref}
+
+% clean citations
+%\usepackage[sort&compress,square,comma,numbers]{natbib}
+\usepackage{float}
+%\usepackage[
+%giveninits=true,
+%style=science,
+%]{biblatex}
+%\addbibresource{extra.bib} %Imports bibliography file
+%\addbibresource{zotero.bib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% In the preamble of your LaTeX document:
+\usepackage[style=science,giveninits=true,maxbibnames=999,uniquelist=false,articletitle=true]{biblatex}
+\AtEveryBibitem{\clearfield{month}}
+\AtEveryCitekey{\clearfield{month}}
+\AtEveryBibitem{\clearfield{day}}
+\AtEveryCitekey{\clearfield{day}}
+\addbibresource{extra.bib} %Imports bibliography file
+\addbibresource{zotero.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Force figures to appear in the desired section
+\usepackage{placeins}
+
+\usepackage{comment}
+\usepackage{xfrac}
+\newcommand{\blu}[1]{#1}
+
+% hyperref makes references clicky. use \url{www.example.com} or \href{www.example.com}{description} to add a clicky url
+% \usepackage{nameref}
+% line numbers
+%\usepackage[right]{lineno}
+
+% improves typesetting in LaTeX
+\usepackage{microtype}
+\DisableLigatures[f]{encoding = *, family = * }
+
+% text layout - change as needed
+% \raggedright
+\usepackage{parskip}
+\setlength{\parindent}{0.0cm}
+%\textwidth 6.06in
+%\textheight 9.75in
+%text={6.06in,9.75in}
+
+% Remove % for double line spacing
+%\usepackage{setspace} 
+%\doublespacing
+
+% use adjustwidth environment to exceed text width (see examples in text)
+\usepackage{changepage}
+
+% adjust caption style
+\usepackage[aboveskip=1pt,labelfont=bf,labelsep=period,singlelinecheck=off]{caption}
+
+% remove brackets from references
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+% headrule, footrule and page numbers
+\usepackage{lastpage,fancyhdr,graphicx}
+\usepackage{epstopdf}
+\pagestyle{myheadings}
+\pagestyle{fancy}
+%\fancyhf{}
+\fancyfoot[R]{\vspace{-2em}\fontsize{9}{12} \selectfont Page \thepage\ of \pageref{LastPage}}
+\fancyfoot[C]{}
+\fancyfoot[L]{\fontsize{9}{12} \selectfont \textit{Science Advances}}
+\renewcommand{\headrule}{}
+\renewcommand{\footrule}{\hrule height .5pt \vspace{-.35em}}
+%\fancyheadoffset[L]{2.25in}
+\fancyfootoffset[L]{.5in}
+%\fancyfoot[L]{\fontsize{10}{12} \selectfont times}
+\fancyhead[L,C,R]{}
+
+% use \textcolor{color}{text} for colored text (e.g. highlight to-do areas)
+\usepackage{color}
+
+% define custom colors (this one is for figure captions)
+\definecolor{Gray}{gray}{.25}
+
+% this is required to include graphics
+\usepackage{graphicx}
+
+% use if you want to put caption to the side of the figure - see example in text
+\usepackage{sidecap}
+
+% use for have text wrap around figures
+\usepackage{wrapfig}
+\usepackage[pscoord]{eso-pic}
+\usepackage[fulladjust]{marginnote}
+\reversemarginpar
+
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\newcommand{\avg}[1]{ \left\langle #1 \right\rangle}
+\usepackage{mathrsfs}
+\newcommand{\C}{\mathscr{C}} % for connected correlation symbol
+
+%\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+%  {-3.25ex \@plus -1ex \@minus -0.2ex}%
+%  {0.01pt}%
+%  {\raggedsection\normalfont\sectfont\markblankline\size@paragraph}%
+%}
+\usepackage{parskip}
+\usepackage{titlesec}
+\titlespacing*{\section}{-.5in}{0ex plus 0ex minus 0ex}{0ex plus 0ex}
+\titlespacing*{\subsection}{-.5in}{0ex plus 0ex minus 0ex}{0ex plus 0ex}
+\titleformat{\section}{\normalfont\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesection}{\markblankline}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% These are to highlight changes to the manuscript in the response to reviewers. CAN REMOVE IN FINAL VERSION!
+% For ease, can simply uncomment the last \bl definition when doing so, thereby avoiding having to go through and delete all \bl statements in the text itself
+\usepackage{xcolor}
+\newcommand{\bl}[1]{\textcolor{cyan!70!black}{#1}}
+%\newcommand{\bl}[1]{#1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% document begins here
+\begin{document}
+%\vspace*{0.35in}
+
+% title goes here:
+\begin{flushleft}
+
+%%%%%%
+\begin{adjustwidth}{-.5in}{}
+\textbf{\textsc{Front Matter}}
+\end{adjustwidth}
+\vspace{-.5em}
+\mbox{}
+\vspace{-.5em}
+\begin{adjustwidth}{-.5in}{}
+\textbf{Title}
+\end{adjustwidth}
+\begin{adjustwidth}{-.5in}{}
+\vspace{-.5em}
+\begin{itemize}
+    \setlength\itemsep{-1em}
+    \item ChromoGen: Diffusion model predicts single-cell chromatin conformations\\
+    \item ChromoGen predicts chromatin conformations%\markblankline\\
+\end{itemize}
+\end{adjustwidth}
+%%%%%%
+\vspace{-.5em}
+\mbox{}
+\vspace{-.5em}
+\begin{adjustwidth}{-.5in}{}
+\textbf{Authors}
+\end{adjustwidth}
+\vspace{-.5em}
+Greg Schuette$^1$\textdagger*,
+Zhuohan Lao$^1$\textdagger, and
+Bin Zhang$^1$*
+%\markblankline
+%%%%%%
+\mbox{}\newline
+\vspace{-.5em}
+\begin{adjustwidth}{-.5in}{}
+\textbf{Affiliations}
+\end{adjustwidth}
+\vspace{-.5em}
+$^1$Department of Chemistry, Massachusetts Institute of Technology, Cambridge, MA 02139, USA.\\
+* Corresponding author: binz@mit.edu (BZ); gkks@mit.edu (GS).\\
+$^\dagger$ These authors contributed equally. 
+%\markblankline
+\mbox{}\newline
+\vspace{-.5em}
+\begin{adjustwidth}{-.5in}{}
+\textbf{Abstract}
+\end{adjustwidth}
+\vspace{-.5em}
+Breakthroughs in high-throughput sequencing and microscopic imaging technologies have revealed that chromatin structures vary considerably between cells of the same type. However, a thorough characterization of this heterogeneity remains elusive due to the labor-intensive and time-consuming nature of these experiments. To address these challenges, we introduce ChromoGen, a generative model based on state-of-the-art artificial intelligence techniques that efficiently predicts three-dimensional, single-cell chromatin conformations \emph{de novo} with both region- and cell type-specificity. These generated conformations accurately reproduce experimental results at both the single-cell and population level. Moreover, ChromoGen successfully transfers to cell types excluded from the training data using just DNA sequence and widely available DNase-seq data, thus providing access to chromatin structures in myriad cell types. These achievements come at a remarkably low computational cost. Therefore, ChromoGen enables the systematic investigation of single-cell chromatin organization, its heterogeneity, and its relationship to sequencing data, all while remaining economical. 
+\mbox{}\newline
+\vspace{-.5em}
+\begin{adjustwidth}{-.5in}{}
+\textbf{Teaser}
+\end{adjustwidth}
+\vspace{-.5em}
+\hl{One sentence summary of the paper}
+\mbox{}\newline%\markblankline
+\end{flushleft}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{abstract} % Up to 150 words for nature methods
+%Breakthroughs in high-throughput sequencing and microscopic imaging technologies have revealed that chromatin structures vary considerably between cells of the same type. However, a thorough characterization of this heterogeneity remains elusive due to the labor-intensive and time-consuming nature of these experiments. To address these challenges, we introduce ChromoGen, a generative model based on state-of-the-art artificial intelligence techniques that efficiently predicts three-dimensional, single-cell chromatin conformations \emph{de novo} with both region- and cell type-specificity. These generated conformations accurately reproduce experimental results at both the single-cell and population level. Moreover, ChromoGen successfully transfers to cell types excluded from the training data using just DNA sequence and widely available DNase-seq data, thus providing access to chromatin structures in myriad cell types. These achievements come at a remarkably low computational cost. Therefore, ChromoGen enables the systematic investigation of single-cell chromatin organization, its heterogeneity, and its relationship to sequencing data, all while remaining economical. 
+%\end{abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% now start line numbers
+%\linenumbers
+\section*{MAIN TEXT}
+\mbox{}
+\section*{Introduction}
+
+
+Understanding the three-dimensional (3D) organization of the genome is paramount for unraveling its functional intricacies and role in gene regulation \cite{Dekker2017,liu2024Nucleosomes}. 
+%Chromatin structures are pivotal in dictating gene expression patterns and regulatory mechanisms \cite{Dekker2016a,Gor14,Furlong2018}. 
+Chromatin structures play a pivotal role in dictating gene expression patterns and regulatory mechanisms \cite{Dekker2016a,Gor14,Furlong2018}. 
+Over the years, advances in molecular biology techniques have delivered invaluable insights into genome conformations \cite{Lie09,Tan2018,Bintu2018,Takei2021}. These insights reveal how chromatin structures facilitate the establishment of the spatial environment around genes, aiding the recruitment of the appropriate molecules at the appropriate time to orchestrate transcription. 
+
+
+
+Recent advances in high-throughput sequencing and imaging technologies have significantly improved our ability to investigate genome organization in individual cells \cite{Nag17,Ste17,Tan2018,Bintu2018,Takei2021}. 
+The resulting techniques have revealed a remarkable level of heterogeneity in chromatin structures among cells in the same population, a finding that requires deeper investigation. However, existing methods are often labor-intensive and time-consuming, %These limitations hinder our capacity to thoroughly analyze the variability in chromatin conformations across different cellular contexts, and impede our understanding of both the principles of genome organization and the stochastic nature of gene regulation.
+hindering thorough analyses of chromatin's conformational variability in different cellular contexts.
+This remains a significant barrier to developing a deeper understanding of both the principles of genome organization and the stochastic nature of gene regulation.  
+
+
+
+Computational methods offer an alternative approach to characterizing individual chromatin conformations at high resolution. Many existing techniques involve fitting an ensemble of chromatin conformations to the average contact probabilities between each pair of genomic loci \cite{Zhang2015a, Fiorillo2021,Shi2021,Boninsegna2022,Sun2021,Kadam2023}, thereby extracting single-cell information from population Hi-C data. Generalizing these methods to predict chromatin structures \emph{de novo}, i.e., from sequence information without Hi-C input, remains challenging \cite{Qi2019, DiPierro2017, MacPherson2018,forte2023Transcription}. Due to our limited understanding of the precise molecular mechanisms underlying chromatin folding, integrating DNA sequence information for \emph{in silico} structure prediction faces significant hurdles.
+
+
+
+More recently, deep learning techniques have provided promising avenues to predict single-cell chromatin conformations directly from sequencing data. Several studies demonstrate these techniques' ability to understand the complex relationship between structural features and sequencing data, enabling the accurate prediction of population Hi-C data \cite{fudenberg2020Predicting,Schwessinger2020,Zhou2022,Tan2023,Zhang2023a}. %However, extending these approaches to predict 3D chromatin conformations requires further investigation.
+However, these approaches have so far never been extended to the prediction of 3D chromatin conformations. 
+Unlike the relatively straightforward mapping between sequence features and population averages, mapping sequence features to individual 3D structures is inherently stochastic due to their cell-to-cell heterogeneity. 
+%This stochasticity arises from the significant heterogeneity within single-cell chromatin structures from the same genomic region in a given cell type. 
+Therefore, predicting individual chromatin structures requires an inherently stochastic model that %captures the heterogeneity present in single-cell datasets.
+understands and reproduces this heterogeneity. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Results}
+
+
+\subsection*{Designing a conditional diffusion model that predicts chromatin conformations \emph{de novo} }
+
+To predict single-cell chromatin structures \emph{de novo} while capturing their heterogeneity, we introduce ChromoGen, our CHROMatin Organization GENerative model. ChromoGen is based on a diffusion model \cite{Sohl-Dickstein2015,song2021ScoreBased,Ho2020}, an artificial intelligence (AI) technique that has proven highly capable in text-to-image applications \cite{Dhariwal2021,Saharia2022,rombach_high-resolution_2022} and in predicting the 3D coordinates of ligands \cite{jing2023Torsional} and protein molecules \cite{arts2023Two,ingraham2023Illuminating,watson2023Novo}. Once trained and parameterized, diffusion models efficiently generate new samples that follow the statistical distribution of the training data, %creating realistic mimics of the original data. 
+thus providing physically realistic alternatives to the original data. 
+%When trained with chromatin structures from single-cell experiments, these models learn the distribution of chromatin conformations within the cell nucleus and stochastically produce 3D conformations that reflect the heterogeneity in single-cell datasets. 
+Therefore, a diffusion model trained on chromatin conformations from single-cell experiments understands the distribution of structural features and can stochastically produce 3D conformations that capture the heterogeneity in single-cell datasets. 
+%Additionally, the adaptable nature of diffusion models allows the structure generation process to be conditioned on additional information, such as DNA sequence and chromatin accessibility data. 
+Furthermore, the distribution sampled by a diffusion model can be conditioned on outside information, such as DNA sequence and chromatin accessibility data. 
+%Consequently, chromatin structures can be generated from sequence information alone, starting from random noise, to achieve \emph{de novo} predictions.
+Consequently, diffusion models can generate region- and cell type-specific chromatin conformations using sequencing data alone, thus achieving \emph{de novo} predictions. 
+
+Figure \ref{fig:design} illustrates the two-stage design of ChromoGen, and the \emph{Methods} section provides additional details of the model. First, a fine-tuned EPCOT~\cite{Zhang2023a} model converts DNA sequence and DNase-seq data into an information-rich, low-dimensional numerical embedding. 
+%This embedding is cell type-specific due to the open chromatin regions identified in DNase-seq experiments. 
+Note that the open chromatin regions identified by the DNase-seq data are cell type-specific, so the embeddings are as well. 
+EPCOT follows a pre-training and fine-tuning framework: %it initially encodes sequences to predict 245 epigenetic features and then refines these encodings to predict population Hi-C data. 
+it first learns to create sequence embeddings from which 245 epigenetic features can be predicted, then the embedding space is refined to best enable population Hi-C predictions. 
+%Next, embeddings created by the fine-tuned model condition the distribution sampled by a denoising diffusion probabilistic model (DDPM)~\cite{ho_denoising_2020} so that it the generates distance maps associated with chromatin conformations in the region of interest. 
+Next, embeddings created by the fine-tuned model condition the distribution sampled by a denoising diffusion probabilistic model (DDPM)~\cite{Ho2020} using classifier-free guidance~\cite{Ho2022a}. 
+This probabilistically generates chromatin conformations specific to the region and cell type represented by the embedding. 
+Rather than Cartesian coordinates, the DDPM represents chromatin conformation by their distance maps. 
+This decision allowed us to implement the DDPM using a U-Net \cite{ronneberger2015UNet}, the foundation of many state-of-the-art image-generating models~\cite{Dhariwal2021, Saharia2022, rombach_high-resolution_2022}.
+Additionally, distance maps are naturally invariant to the rotation and translation of 3D conformations, which many neural network architectures struggle to understand, and distance maps can be easily converted to Cartesian coordinates following the procedure outlined in the \emph{Methods} section.
+
+
+%We trained ChromoGen using the classifier-free guidance approach \cite{Ho2022a}. 
+%We endowed the DDPM with conditional generation capabilities using the classifier-free guidance technique~\cite{Ho2022a}.  
+The training dataset comprised %\hl{12,098,638} 
+11,461,472 3D chromatin conformations at a 20 kb resolution, collected from overlapping 1.28 Mb regions spanning all autosomes (non-sex chromosomes) in GM12878 cells. 
+\textcite{Tan2018} prepared these conformations using the Dip-C pipeline, which optimizes them to reproduce experimental single-cell Hi-C data. 
+That work provided three structural replicates for each of 16 cells; this includes post-processed versions, used herein, that omit regions with low confidence regarding spatial positioning. 
+Maternal and paternal structures were combined for model training with the haploid sequence.
+\begin{comment}
+\begin{figure}[t!]
+    \includegraphics[width=\textwidth]{Figure1_with_Hi-C_Distance.pdf}
+    \caption{
+    \textbf{Illustration of the procedure followed by ChromoGen when making \emph{de novo} predictions of chromatin organization using sequence data.}
+    Before structures are generated, DNA sequence and chromatin accessibility data are converted into numerical embeddings by EPCOT. 
+    These embeddings are passed to a denoising diffusion probabilistic model, which uses a U-Net to gradually remove noise from a randomly generated distance map. 
+    The U-Net receives both the distance map and embedding at each time step to generate region- and cell type-specific samples.  
+    Finally, 3D coordinates are inferred from the fully denoised distance map. 
+}
+    \label{fig:design}
+\end{figure}
+\end{comment}
+
+\subsection*{ChromoGen accurately reproduces the conformational distribution of chromatin}
+\label{sec:results:unguided_ensemble}
+
+\begin{comment}
+To evaluate the quality of chromatin structures produced by ChromoGen, we constructed a predicted dataset by separately generating conformations for genomic regions selected throughout the genome following the procedure detailed in the \emph{Methods} section. 
+
+We first combined all structures together to build the generic structural ensemble for chromatin. 
+Statistics in this ensemble aligns with the general characteristics of chromatin conformations.   These properties are particularly intriguing from the standpoint of polymer physics, as they provide insights into the inherent topological complexities of this fundamental biological polymer \cite{Gro93,Lie09}. To assess the fidelity of the generated structures, we conducted a comparative analysis using several statistical metrics against Dip-C structures, as well as conformations generated by a homopolymer with a comparable level of compaction to chromatin.
+\end{comment}
+
+To evaluate the quality of chromatin structures produced by ChromoGen, we generated a dataset by separately generating conformations for genomic regions spanning the genome following the procedure detailed in the \emph{Methods} section. 
+While ChromoGen's strength lies in its ability to predict valid conformational ensembles for each of these regions independently, the quality of these predictions requires ChromoGen to capture the full range of generic topological features in chromatin and distribute them properly. 
+Furthermore, the properties of a generic, region non-specific ensemble are particularly intriguing from the standpoint of polymer physics, as they provide insight into the inherent topological complexities of this fundamental biological polymer \cite{Gro93,Lie09}.
+As such, we first investigated these generic topological features. 
+
+To do this, we approximated a generic ensemble by combining 200 generated structures from each of the regions in the broader dataset. 
+We similarly created a reference ensemble from Dip-C conformations to assess the fidelity of the generated structures. 
+The reference ensemble consisted of all available Dip-C-inferred conformations available in all non-overlapping regions of the genome. 
+We conducted several comparative analyses using statistical metrics computed using the generated and Dip-C ensembles, as well as using conformations generated by a homopolymer model whose compaction level is comparable to chromatin. 
+
+We computed probability distributions of the spatial distances between loci separated by various sequence lengths. %using the generated structures. For comparison, we determined the corresponding distributions using the Dip-C structures collected from the same genomic regions as those included in the prediction dataset. 
+As shown in Fig.~\ref{fig:unguided_ensemble}a, the generated and experimental distributions agree well. In contrast, the distributions computed using the homopolymer simulation differ significantly from the experimental structures despite their apparent match in overall chromatin compaction (Fig.~\ref{fig:unguided_ensemble}c). %We quantified the agreement by computing the Kullback-Leibler (KL) divergence between the distributions, which measures the difference between probability distributions. 
+We quantified the agreement between the distributions at each sequence separation by computing the  Kullback-Leibler (KL) divergence between them, which measures the statistical distance between probability distributions. 
+The KL divergence between identical distributions is 0 and increases as distributions diverge. This test confirmed the strong similarity between the generated and experimental distance distributions at all sequence separations (Fig.~\ref{fig:unguided_ensemble}b), supporting the accuracy of the structural characteristics in the ChromoGen conformations.
+
+To examine the topological features in the generated conformations more comprehensively, we embedded their distance maps into two dimensions using Uniform Manifold Approximation and Projection (UMAP)~\cite{mcinnes2018umap}. The UMAP embeddings were determined using conformations collected throughout the genome and represent the most prominent low-dimensional features that differentiate them. This method allows for a more holistic comparison between chromatin conformations than the prior analyses of individual contact pairs. As shown in Fig.~\ref{fig:unguided_ensemble}e, the first embedding dimension, UMAP 1, captures the varying degrees of chromatin collapse, with larger values indicating more extended structures. The second embedding dimension differentiates chromatin structures with topologically associating domains (TADs) \cite{Nor12,Dixon2012} forming at various positions. The probability distribution in the two UMAP embeddings estimated using generated conformations (Fig.~\ref{fig:unguided_ensemble}d, top) supports ChromoGen's ability to produce highly complex structures that cover a wide range of conformations and structural motifs. Furthermore, this distribution matches well with the experimental data (Fig.~\ref{fig:unguided_ensemble}d bottom), highlighting the model's accuracy in reproducing experimental statistics.
+
+\begin{comment}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.92\textwidth]{Figure2.pdf}
+    \caption{
+    \textbf{ChromoGen accurately captures the conformational distribution observed in single-cell chromatin structures.} 
+    (a)
+    The distribution of spatial distances between monomers separated by one bond (left) and fifty bonds (right) are compared for conformations generated by ChromoGen (purple), Dip-C (orange), and a homopolymer model (green). 
+    (b)
+    The KL divergence between Dip-C and both ChromoGen (purple) and homopolymer (green) distance distributions such as in (a) is shown for all available loop sizes, i.e., from one bond to 63 bonds separating the relevant monomer pairs at 20 kb resolution. 
+    (c)
+    The radius of gyration distribution is shown for all conformations generated with ChromoGen (purple), Dip-C (orange), and the homopolymer model (green). 
+    The KL divergence between the Dip-C and ChromoGen (homopolymer) distributions is 0.0281 (0.0398). 
+    (d)
+    Probability distributions in two-dimensional UMAP embeddings for generated (top) and Dip-C structures (bottom).    
+    (e) Variations along the two UMAP embedding dimensions represent overall chromatin compaction (top) and the shifting of TAD boundaries (bottom), as shown by the corresponding average distance maps.
+    From left to right, the distance maps in the top row were computed by averaging the distance maps of chromatin conformations whose embedding has a UMAP 1 value within the range [3, 3.1], [8, 8.1], and [12, 12.1]. Similarly, from left to right, the bottom panels were computed using conformations whose embedding has a UMAP 2 value within the range [-1, -0.9], [1, 1.1], and [3, 3.1].
+    }
+    \label{fig:unguided_ensemble}
+\end{figure}
+\end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{ChromoGen accurately predicts conformational ensembles for specific regions}
+\label{sec:results:guided_ensemble}
+
+%Having validated the generic physical properties of our generated conformations, we focused on ChromoGen's ability to capture biologically meaningful structural features. We separately evaluate the generated chromatin structures for specific genomic regions in the prediction dataset against the corresponding Dip-C structures. 
+Having validated the generic physical properties of our generated conformations, we next investigated ChromoGen's ability to capture biologically meaningful structural features. 
+To do this, we compared the generated and Dip-C chromatin structures specific to each genomic region independently.
+
+Figs.~\ref{fig:guided_ensemble}a-c present median generated distance maps for three representative genomic regions, plus the distance map and 3D structure of one conformation in each region. For comparison, we included the contact probability maps from population Hi-C, the median distance map from all Dip-C-derived conformations, and the distance map and 3D structure of the Dip-C conformation that best aligns with the chosen generated conformation in each region. In all cases, we found that the generated median distance maps capture key structural features visible in population Hi-C, including chromatin loops \cite{Rao2014} and TADs. Similarly, individual generated structures closely match their Dip-C-derived counterparts.
+
+
+We further compared the overall distribution of generated and Dip-C conformations in the two dimensional UMAP embeddings introduced in Fig.~\ref{fig:unguided_ensemble} for the three regions. As shown in the right panels of Fig.~\ref{fig:guided_ensemble}a-c, the generated structures in the three regions show significantly different topological distributions, highlighting ChromoGen's ability to make region-specific predictions. Importantly, the generated conformational distributions overlap well with Dip-C structures, which indicates that ChromoGen captures the heterogeneity observed in single-cell datasets. 
+
+
+To quantitatively assess the agreement between generated and experimental structures, we conducted several analyses on regions across the entire genome included in the prediction dataset. The median distance maps computed with generated and Dip-C conformations are consistently strongly correlation  (Fig.~\ref{fig:guided_ensemble}d, left, and Fig.~S1), with a median correlation coefficient of 0.9134. 
+Additionally, ChromoGen distances are highly correlated with the logarithm of contact probabilities estimated from population Hi-C data (Fig.~\ref{fig:guided_ensemble}d, middle). For each Dip-C structure available in the regions analyzed in chromosome 22, we also computed the minimal root-mean-square displacement (RMSD) using generated conformations. The minimal RMSD was found to be significantly smaller than expected for pairs of random conformations. As shown in Fig.~\ref{fig:guided_ensemble}e, the distribution of minimal RMSD centers around 200 nm, corresponding to the size of two 20 kb regions. Due to the limited number of generated structures and the stochastic nature of ChromoGen data generation, we do not expect the minimal RMSD to be zero. However, the small values support ChromoGen's ability to capture the structural features observed in individual single-cell conformations.
+
+To more directly compare the ChromoGen conformations to population Hi-C data, we converted the 3D structures into contact probabilities via the procedure detailed in the \emph{Methods} section.
+We then computed the correlation between distance-inferred and experimental contact probabilities (Fig.~\ref{fig:guided_ensemble}d, right). The median correlation coefficient (0.9682) is comparable to values observed when comparing distances from imaging experiments with population Hi-C data~\cite{Bintu2018}. We also calculated the insulation scores using both population Hi-C and distance-inferred contact probability maps. As shown in Fig.~\ref{fig:guided_ensemble}f and Fig.~S2a, ChromoGen and Dip-C structures produce highly consistent insulation scores, which align well with those estimated from population Hi-C in most genomic regions. 
+The less-than-perfect correlations are partly due to the challenge of inferring contact probabilities from spatial distances, which lacks a precise and rigorous formula. This ambiguity in conversion is particularly problematic for regions with less pronounced structural features, leading to poorer correlations (Fig.~S3).
+
+
+
+Finally, it is important to note that ChromoGen was trained using single-cell structural data for chromosomes 1-22, excluding chromosome X. The genome-wide analyses presented in Fig.~\ref{fig:guided_ensemble}d-e also did not include data from chromosome X. Nevertheless, ChromoGen demonstrated similar accuracy on chromosome X, as quantified by various metrics (Fig.~S4). 
+These test data results highlight ChromoGen's transferability and support its ability to make \emph{de novo} predictions.  
+
+
+\begin{comment}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.9\textwidth]{./biologically_accurate_mixed_contribution13.pdf}%{Figure3_Zhuohan.pdf}
+    \caption{
+    \textbf{ChromoGen conformations match experimental measurements at both the population and single-cell level.
+    }
+    (a-c)
+    The population Hi-C contact probability maps (left) are compared to population-median distance maps (center left) for both ChromoGen (lower triangle) and Dip-C (upper triangle) conformations in various genomic regions. 
+    Also shown are the distance maps (center) and 3D conformations (center right) for one ChromoGen (lower triangle, purple) and one Dip-C (upper triangle, yellow) conformation selected from the same set of conformations used in the population-median distance maps. The right panel overlays the UMAP-embedded Dip-C structures over the probability distribution of conformations embedded by the same transformation. 
+    (d) 
+    Probability distribution of the Pearson correlation coefficient, $\rho$, between ChromoGen and Dip-C median distances (left), between median distances and log Hi-C contact probabilities (center), and between experimental Hi-C contact probabilities and those inferred from distances (right). ChromoGen and Dip-C results are shown in purple and orange, respectively, in the last two plots. 
+    (e) The probability distribution of the RMSD between a given Dip-C structure from chromosome 22 and its best-aligned ChromoGen conformation generated in the same region is shown in orange. For comparison, the  distribution of RMSDs calculated using all pairs of Dip-C and ChromoGen conformations is shown in purple. 
+    (f) Comparison between the Pearson correlation coefficients of insulation scores computed using population Hi-C and those derived from distances. 
+    }
+    \label{fig:guided_ensemble}
+\end{figure}
+\end{comment}
+
+
+%We converted the 3D structures into contact probabilities to more directly compare the ChromoGen conformations to population Hi-C data, as detailed in the \emph{Methods} section. 
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{ChromoGen achieves transferability across cell types}
+\label{sec:results:CTCF}
+
+Chromatin undergoes many interrelated changes upon cell differentiation, including alterations in epigenetic modifications, DNA accessibility, and 3D organization. %These changes are interconnected, and p
+Prior models have successfully used chromatin accessibility data to predict the differences in population-averaged chromatin organization patterns~\cite{Tan2023,Zhang2023a} between distinct cell types. As such, we anticipate that the DNase-seq data provided to ChromoGen should allow it to predict conformational ensembles with cell type specificity. 
+
+
+To evaluate ChromoGen's transferability across cell types, we generated another dataset for IMR-90 cells using their DNase-seq data and the hg19 sequence. This includes the same genomic regions as the generated GM12878. No modifications were made to ChromoGen for the IMR-90 predictions, and all parameters were determined during training with single-cell structures from GM12878 cells alone.
+
+
+We first examined several regions where differences between GM12878 and IMR-90 cells are visually apparent in the population Hi-C contact maps. As shown in Fig.~\ref{fig:transferability}a, the median distance maps produced by ChromoGen reflect these differences equally. The top panel demonstrates that the generated structures capture a small domain in the middle, present in GM12878 but absent in IMR-90 cells. This domain also shows enriched contacts with the subsequent domain. In the middle panel, weaker looping strength is evident for GM12878 cells compared to IMR-90 cells. Finally, the bottom panel highlights the absence of nested loops in GM12878 cells, which are present in IMR-90 cells. The DNase-seq data alongside the distance maps indicate that changes in chromatin loops often correlate with variations in chromatin accessibility.
+
+While nested loops and domains are evidently absent in GM12878 cells for the region of chromosome 21 shown in Fig.~\ref{fig:transferability}a, individual structures clearly possess domains, as seen in the generated conformations (Fig.~\ref{fig:transferability}b) and Dip-C structures (Fig.~S5). Notably, the strength of domain boundaries,  which describes the rate of change in spatial distance across the boundary position \cite{Bintu2018}, estimated using generated structures for GM12878 cells is comparable to that of IMR-90 cells (Fig.~\ref{fig:transferability}b, bottom left). However, the precise positions of these boundaries are less well defined and not as conserved in GM12878 structures compared to IMR-90 structures. Consequently, the probability for any given genomic region to be a boundary, when estimated using all generated structures, is more uniform in GM12878 cells than in IMR-90 cells (Fig.~\ref{fig:transferability}b, bottom right). This ambiguity in boundary positions results in the absence of clear features in the population-averaged contact/distance maps. These observations mirror the results of \textcite{Bintu2018}, where microscopic imaging of cohesin-depleted HCT116 cells revealed that domains persisted despite their absence from population-median distance maps. Together, these findings highlight the conformational heterogeneity in chromatin organization and the importance of single-cell studies for its characterization.
+
+
+We further conducted a statistical analysis of all conformations in the IMR-90 prediction dataset to evaluate the quality of the predicted structures. Since no Dip-C study currently provides single-cell structures for IMR-90 cells, we benchmarked our generated conformations against population Hi-C data. Similar to the results in GM12878 cells, we found that ChromoGen distances are highly correlated with the logarithm of contact probabilities estimated from population Hi-C data, with a median value of 0.9533 (Fig.~\ref{fig:transferability}c, left). We also computed the correlation between distance-inferred and experimental contact probabilities (Fig.~\ref{fig:transferability}c, right) and the insulation score along the genome (Fig.~\ref{fig:transferability}d and Fig.~S2b). The quality of the predicted IMR-90 results is comparable to those obtained for GM12878 cells, supporting the application of ChromoGen to new cell types.
+
+\begin{comment}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{./figures/GM_vs_IMR8.pdf}
+    \caption{
+    \textbf{ChromoGen produces accurate, cell-type specific chromatin conformations.}
+    (a)
+    In each of three regions, the experimental Hi-C interaction frequencies (left) and population-median, generated distance maps (right) are shown for both GM12878 (upper triangle) and IMR-90 (lower triangle) cell types. 
+    The DNase-seq accessibility data are shown for both IMR-90 (left) and GM12878 (right) cells.
+    (b) Distance maps of two ChromoGen structures from GM12878 and IMR-90 cells for the region in chromosome 21 shown in part a. The bottom panel shows the corresponding  probability distribution of boundary strength (left) and  probability for each genomic location to appear as a domain boundary in individual structures (right) in the same region for the two cell types, determined using an ensemble of generated conformation. 
+    (c) 
+    The distribution of Pearson correlation coefficients between median distances and log Hi-C contact probabilities (left) and between experimental Hi-C contact probabilities and those inferred from distances (right). Distances were determined using ChromoGen structures for the two cell types. 
+    (f) Comparison between the Pearson correlation coefficients of insulation scores computed using population Hi-C and those derived from ChromoGen distances for GM12878 and IMR-90 cells. 
+    }
+    \label{fig:transferability}
+\end{figure}
+\end{comment}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section*{Conclusions and Discussion}
+\section*{Discussion}
+
+This work introduces ChromoGen, a method to efficiently generate region- and cell type-specific chromatin conformations. We showed that ChromoGen produced conformations that reproduce a variety of structural features revealed in population Hi-C experiments and the heterogeneity observed in single-cell datasets. In addition, after being trained on GM12878 data alone, ChromoGen generates conformational ensembles of equal quality in both IMR-90 and GM12878 cells, supporting its transferability across cell types. These results reinforce the notion of a sequence-structure relationship for chromatin, and establish ChromoGen as a \emph{de novo} prediction tool for efficient and economic characterization of chromatin organization at single-cell resolution.  
+
+
+
+Computational approaches for predicting chromatin conformations \emph{de novo} using only sequencing data remain scarce. Compared to existing polymer simulation based prediction approaches, ChromoGen maintains unique advantages. The generative nature of ChromoGen enables efficient production of statistically independent samples, thus avoiding the inefficient navigation of state space that polymer simulations require to produce a diverse set of conformations. Moreover, ChromoGen's transformer-based front end provides additional advantages,  extracting features from sequencing data and placing the information in low-dimensional embeddings that the diffusion model handles efficiently. This powerful design dramatically reduces the computational cost of each diffusion step, providing a practical means to achieve cell type-specific \emph{de novo} predictions with the full benefit of DNA sequence and chromatin accessibility data. In contrast, incorporating DNA sequence information into polymer models has long been a challenging task that is often indirectly addressed by incorporating various histone marks. 
+
+
+In its current form, ChromoGen can be immediately applied to any cell type with available DNAse-seq data, enabling a vast number of studies into the heterogeneity of genome organization both within and between cell types to proceed. However, several improvements could enhance its utility. %Currently, the resolution of predicted chromatin conformations is 20 kb, a limitation primarily set by Dip-C experiments. 
+%Notably, the current implementation predicts chromatin conformations at the relatively coarse 20 kb resolution, a limitation primarily set by Dip-C experiments.
+Notably, the current resolution of predicted chromatin conformations is limited to 20 kb, which is primarily due to constraints from the available Dip-C data. 
+However, higher-resolution single-cell datasets are becoming available, such as those at 5 kb resolution \cite{Wu2023}, and we anticipate that ChromoGen will require no modifications to perform well after training on these improved datasets. 
+%and we anticipate that ChromoGen can be directly applied to these improved datasets. %That said, the computational cost of ChromoGen scales with the length of the genomic region as $N^2/2$, where $N$ is the chromatin sequence length. 
+%As we move to longer regions, the computational cost increase becomes more noticeable.
+That said, the computational cost of ChromoGen will become more significant when analyzing longer regions and using higher resolutions, as the size of distance maps, as represented by ChromoGen, scales with the length of the genomic region as $N^2/2$, where $N$ is the number of genomic bins. 
+%Alternative approaches, such as using graph neural networks \cite{ingraham2023Illuminating,Airas2023b,arts2023Two} to directly model chromatin structures in Cartesian space with linear scaling in chromatin length, rather than in distance space, could be explored to address this issue.
+Several approaches can be explored to address this issue, such as further manipulating the distance map representation, using a cascaded diffusion model~\cite{Ho2022}, and/or using an Efficient U-Net architecture~\cite{Saharia2022}.
+Alternatively, replacing the U-Net with a graph neural network \cite{ingraham2023Illuminating,Airas2023b,arts2023Two} would allow chromatin structures to be represented by their Cartesian coordinates, which scale linearly with region length. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Materials and Methods}
+\label{sec:Methods}
+
+\hl{The instructions state, "This section should also explain statistical methods with enough detail to enable a knowledgeable reader with access to the original data to verify the results. The values for N, P, and the specific statistical test performed for each experiment should be included in the appropriate figure legend or main text." Should we mention PCC, etc., implementations? May also need to migrate some details from the SI.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{ChromoGen design and implementation}
+\label{subsec:AI}
+Our approach to generating chromosome conformations relies on two neural networks that operate sequentially (Fig.~\ref{fig:design}). First, a transformer model, based on the EPCOT framework \cite{Zhang2023a} and designed to predict Hi-C contacts from sequencing data, compresses the information in DNA sequence and DNase-seq data into  low-dimensional numerical embeddings.  These embeddings are then passed to a denoising diffusion probabilistic model \cite{Ho2020} to generate region-specific pairwise distance maps. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Embedding sequence data with EPCOT}
+\label{subsec:AI:EPCOT}
+
+We adopted the embedding for DNA sequence and chromatin accessibility data produced by the software EPCOT introduced by \textcite{Zhang2023a}. EPCOT employs a pre-training and fine-tuning framework to define numerical embeddings that predict population Hi-C data optimally. During the initial pre-training process, a transformer model including encoder and decoder parts was optimized to predict 245 epigenetic features from DNA sequence and DNAase-seq data. Such a comprehensive prediction allows the model to derive numerical embeddings that capture the interdependence of DNA sequence and epigenomic information. 
+
+
+We further fine-tuned the encoder model reported by \textcite{Zhang2023a}  with the chromatin contact map prediction module to generate sequence embeddings optimized for awareness of 3D chromatin contacts. Hi-C data for GM12878 cells aligned to hg19 at a 5KB resolution were used for training. The final size of the produced embedding for a given genomic segment is a 256 element vector. Embeddings of size $256 \times 256$ are provided as input for the downstream diffusion model to predict the structure of 1.28 MB long chromatin segments. Additional details on EPCOT embedding is provided in the Supporting Information \emph{Section: Embedding sequence data with EPCOT}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \subsubsection*{Diffusion model theory}
+% \label{subsec:AI:Theory}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Generating structures with a diffusion model}
+\label{subsec:AI:Theory}
+
+First introduced in 2015~\cite{Sohl-Dickstein2015}, diffusion models draw inspiration from diffusion processes in statistical mechanics. In the forward process, structured data samples ($x_0\sim q$) -- biologically relevant chromatin conformations in our case -- are transformed into samples from a Gaussian white noise distribution ($x_T\sim p\coloneq\mathcal{N}(\boldsymbol{0},\boldsymbol{I})$) through a Markovian diffusion process with transition probabilities~\cite{Ho2020}
+    $$Q(x_{t}\vert x_{t-1},t-1) = \mathcal{N}(x_t; \sqrt{1-\beta_t}x_{t-1},\beta_t\boldsymbol{I})$$
+for each timepoint $t\in\lbrace 0,1,...,T \rbrace$. $\beta_t\in\lbrace \beta_1,\ldots,\beta_{T} \rbrace$ determines the amount of noise added between $t-1$ and $t$, and $\beta_{T}\coloneq 1$; $\lbrace \beta_1,\ldots,\beta_{T} \rbrace$ is known as the \textit{$\beta$ schedule}. We set T=1000 and adopted a cosine $\beta$ schedule \cite{nichol_improved_2021}. Given that the forward trajectory $X_{0:T}\coloneq\{x_0,x_1,x_2,...,x_T\}$ begins at $x_0$, its probability is 
+%Given that it begins at $x_0$, the probability of the forward trajectory $X_{0:T}\coloneq\{x_0,x_1,x_2,...,x_T\}$ is
+$$Q(X_{0:T}|x_0) = \prod_{t=1}^{T} Q(x_{t}\vert x_{t-1},t-1).$$  
+
+
+
+Generative diffusion models draw samples from the target distribution $p$ by propagating reverse-time diffusion trajectories in this same framework, thus converting white noise samples, $x_T$, into valid chromatin conformations, $x_0$. Similar to the forward-time trajectories, reverse-time trajectories $X_{T:0}$ are Markovian with probability 
+$$ P_\theta(X_{T:0}|x_T) = \prod_{t=1}^{T} P_\theta(x_{t-1}\vert x_{t},t),$$
+%The individual transition probabilities $P_\theta(x_{t-1}\vert x_{t})$ were parameterized using neural networks, Unet \cite{ronneberger2015UNet}, such that the generalized balance equation approximately holds
+where $\theta$ indicates that each transition probability $P_\theta(x_{t-1}\vert x_{t})$ was computed with a neural network; we used a U-Net~\cite{ronneberger2015UNet}. 
+%The U-Net was parameterized such that the generalized balance equation
+The U-Net was parameterized such that the generalized balance equation
+$$ p(x_T) P_\theta(X_{T:0}|x_T) = q(x_0) Q(X_{0:T}|x_0)$$ 
+holds when $X_{0:T}$ and $X_{T:0}$ correspond to the same trajectory in forward and reverse time, respectively. 
+%From this balance equation, one can show straightforwardly that the probability distribution generated by the backward trajectory at time 0, $$p_\theta(x) = \int D[X_{1:T}] p(x_T)P_\theta(X_{0:T}|x_T),$$ recovers the data distribution, $p(x_0)$. 
+From this, it is straightforward to show that the distribution of generated samples, $$p_\theta(x_0) = \int dx_1 \int dx_{2} \cdots \int dx_T P_\theta(X_{T:0} | x_T)p(x_T),$$ recovers the data distribution probability, $q(x_0)$.
+
+
+%To apply a diffusion model for chromatin structure prediction, 
+To train a diffusion model that predicts chromatin structures, we collect data samples as single cell chromatin structures throughout the human genome. We further represented chromatin conformations by their pairwise distance maps, which are square matrices that can directly interface with the U-Net architecture used by many state-of-the-art image-generating diffusion models~\cite{Dhariwal2021, Saharia2022, rombach_high-resolution_2022}. % to parameterize the transition probability, $P_\theta(x_{t-1}\vert x_{t})$. 
+%Compared to Cartesian coordinates, distance maps are also superior and invariant to translations and rotations. 
+Generating distance maps provides additional performance benefits over Cartesian coordinates thanks to their invariance to translations and rotations. 
+Distance maps are naturally symmetric across the main diagonal, so we dropped the lower triangle to reduce data redundancy and ``folded" the upper triangle into a square, two-channel object (Fig.~S6), thus reducing computational complexity. 
+We further normalized the distances using the formula provided in the Supporting Material section \emph{Normalizing distances for the diffusion model} to restrict their range to $0$ to $1$ (Fig.~S7).
+The diffusion model then multiplies each normalized value by two before subtracting 1, converting the range to $[-1,1]$ to better match the standard normal distribution.  
+%Training using such data samples produces probabilistic models that generate structures following the statistical distribution of chromatin in cell nucleus, albeit not specific to any particular genomic region of interest. 
+Training a diffusion model with this data alone would yield a model that generates chromatin structures according to the distribution relevant to cell nuclei, albeit without any region- or cell type-specificity. 
+
+%ChromoGen aims to sample region- and cell type-specific chromatin conformations. For such purposes, we modify the diffusion model to introduce conditioning on $\boldsymbol{c}$, which represents numerical embedding of DNA sequence and DNase-seq data introduced in the previous section, such that the backward transition probability becomes $P_\theta(x_{t-1}\vert x_{t}, \boldsymbol{c})$. 
+%To impart these capabilities to ChromoGen, we conditioned sample generation at each region on the numerical embedding of the relevant DNA sequence and DNase-seq data, $\boldsymbol{c}$, as introduced in the previous section. 
+To impart these capabilities to ChromoGen, we conditioned sample generation at each region on the relevant numerical embedding, $\boldsymbol{c}$, as described in the prior subsection. 
+Correspondingly, the probability of generating a given sample $x$ for a given sequence context becomes $p_\theta(x|\boldsymbol{c})$.  
+
+Following the classifier-free guidance approach introduced by  \textcite{Ho2022a}, we simultaneously train a conditional model $p_\theta(x\vert \boldsymbol{c})$ and an unconditional one, $p_\theta(x)$. The output of these models can be combined at each timestep to approximate an implicit classifier, $p_\theta(\boldsymbol{c}\vert x) \propto p_\theta(x\vert \boldsymbol{c}) / p_\theta(x)$. \textcite{Ho2022a} found that sampling according to 
+\begin{equation}\label{ptilde}
+    \Tilde{p}_\theta(x\vert \boldsymbol{c})\propto p_\theta(x\vert \boldsymbol{c}) p_\theta(\boldsymbol{c}\vert x)^{w} \propto p_\theta(x\vert \boldsymbol{c})^{w+1} / p_\theta(x)^{w}
+\end{equation}
+with $w>0$ rather than $p_\theta(x\vert \boldsymbol{c})$ produces images that better satisfy text description. 
+
+
+We constructed a training dataset for the diffusion model containing %\hl{12,098,638} 
+11,461,472 of the Dip-C-generated chromatin conformations for all non-identical 1.28 Mb-long regions in autosomes for which the spatial positions were confident; chromosome X was excluded for testing purposes. We trained the diffusion model for 600,000 iterations using batch size 128, carrying out approximately 6.7 epochs. 
+This proceeded via the PyTorch 2.0.1 implementation of the Adam optimizer using learning rate 0.0001, $\beta_1$ and $\beta_2$ values of 0.9 and 0.999, respectively, and default values for all other options. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Data acquisition and preparation}
+
+%We've already discussed data preparation in AI III: Data representation, so just need to clarify where data came from, I think. 
+
+This work utilizes several datasets, all of which aligned with the hg19 human genome assembly to maintain consistency with the Dip-C-generated 3D conformations used to train ChromoGen.  
+
+Hi-C data were downloaded in $\texttt{.hic}$ format from the Gene Expression Omnibus (GEO) database~\cite{edgar_gene_2002}, series number GSE63525, supplementary files $\texttt{GSE63525\_IMR90\_combined\_30.hic}$ and \\
+$\texttt{GSE63525\_GM12878\_insitu\_primary+replicate\_combined\_30.hic}$ for IMR-90 and GM12878 cell types, respectively. 
+We converted the highest-resolution contact map in each $\texttt{.hic}$ file (1 kb for GM12878, 5 kb for IMR-90) to $\texttt{.cool}$ format using $\texttt{hic2cool}$ version 0.8.3 (\url{https://github.com/4dn-dcic/hic2cool}) \cite{reiff_4d_2022}. 
+We then coarsened the contact matrices to 5 kb (GM12878 only) and 20 kb resolutions and calculated balancing weights at all resolutions using the $\texttt{zoomify}$ and $\texttt{balance}$ methods, respectively, from $\texttt{Cooler}$ version 0.9.3~\cite{abdennur_cooler_2020}. 
+
+
+3D chromosome conformations for GM12878 cells used throughout this study were generated from single-cell Hi-C experiments \cite{Tan2018}. We downloaded the relevant preprocessed data for the 16 available cells using $\texttt{GEOparse}$ version 2.0.3 to specify the supplementary files for samples GSM3271347-GSM3271371 from GEO database series GSE117876. We utilized the `clean' conformations, which omit regions with low confidence in their 3D positions. 
+
+
+DNase-seq data were downloaded in bigWig format from the ENCODE database~\cite{the_encode_project_consortium_integrated_2012} using accession numbers ENCFF901GZH and ENCFF291DOH for GM12878 and IMR-90 cell types, respectively. 
+
+
+\subsection*{Generating genome-wide predictions with ChromoGen}
+
+We applied ChromoGen to predict chromatin structures for various 1.28 MB genomic regions in GM12878 and IMR-90 cells. These regions were selected as consecutive segments along each autosome with a 240 KB overlap. %Regions with low-confidence spatial positions in the Dip-C structures were excluded. 
+To facilitate fair benchmarking, we excluded regions with gaps in the `clean' structures in every cell provided by the Dip-C dataset, which omit regions whose spatial coordinates are low-confidence. 
+For each region, we generated 2000 independent distance maps, half derived from the distribution $\Tilde{p}_\theta(x\vert \boldsymbol{c})$ (Eq.~\ref{ptilde}) with $w=0$ and the other half from the distribution $\Tilde{p}_\theta(x\vert \boldsymbol{c})$ with $w=4$. 
+We generated 20,000 total conformations for several additional regions that contain interesting features (Fig.~\ref{fig:guided_ensemble}a-c and Fig.~\ref{fig:transferability}a-b), though these were omitted from all genome-wide analyses. 
+As shown in Fig.~S8, larger $w$ values produce distance maps with more prominent loop features, but this comes at the cost of reduced sample diversity. Mixing guidance strengths of $w=0$ and $w=4$ in equal proportion achieves the best balance between sample diversity and region specificity (Fig.~S9) and reproduces population Hi-C data. 
+These distance maps were then converted to 3D structures using the method outlined in the following section. 
+All data presented in this work, except where specified in Fig.~S10, correspond to these reconstructed 3D structures to ensure their physical accuracy. 
+%The reconstructed 3D structures were used for statistical analysis presented throughout the manuscript.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Extracting 3D conformations from distance maps}
+
+ChromoGen predicts 2D pairwise distance maps rather than Cartesian coordinates to avoid the challenges presented by translations and rotations in Cartesian coordinates. We used the following procedure to convert the distance maps into Cartesian coordinates for visualization and downstream analyses.  
+
+
+We treated each genomic segment at 20 kb resolution as a monomer in an unbranched polymer and followed two-step procedure to infer their $x$-, $y$-, and $z$-coordinates. We first inferred 3D coordinates with an analytical algorithm. Using the inferred coordinates, we performed additional numerical optimization to minimize a custom error function that quantifies the differences between the distance map computed with the 3D structure and the generated distance map. More details about this procedure is provided in the Supporting Material section: \emph{Extracting 3D conformations from distance maps}. This procedure yielded 3D conformations whose distance maps maintain remarkable agreement with the corresponding generated distance maps (Fig.~S10); the average r-squared value between the generated distance maps and those of their corresponding, inferred 3D conformation is 0.9914. 
+
+
+\subsection*{Converting chromatin conformations to Hi-C contact probabilities}
+\label{sec:dist_to_hic}
+
+For direct comparison with population Hi-C data, we converted individual 3D structures to contact probabilities using the following expression 
+\begin{equation}
+    \label{eq:dist_to_prob}
+    p_{ij} = 
+    \begin{cases}
+        \tfrac{1}{2}\left\{ 1 + \tanh[\eta(r_c-r_{ij})] \right\} & \text{ if } r_{ij} < r_c \\
+        \left( \frac{r_c}{r_{ij}} \right)^{3.45} & \text{otherwise}
+    \end{cases}
+    ,
+\end{equation}
+where $p_{ij}$ is the probability of detecting a contact between monomers $i$ and $j$, which are separated by distance $d_{ij}$. We performed this calculation in reduced units with cutoff distance $r_c=1.5$ and decay $\eta=3.72$. The power law expression at large distances was inspired by the relationship between experimental Hi-C probabilities and Dip-C distances (Fig.~S11). Afterwards, we averaged the $p_{ij}$ values from all conformations in a given region to obtain population Hi-C contact probabilities. 
+
+
+\subsection*{Creating low dimensional embedding of 3D structures with UMAP}
+To facilitate the visualization and comparison of high-dimensional chromatin structure conformational distributions, we generated two-dimensional embeddings using UMAP. Each structure was first converted into distance maps, followed by $z$-score normalization of each entry in these maps. Non-redundant entries from the normalized distance maps, including both generated and Dip-C structures from selected genomic regions as described in \emph{Section: Generating genome-wide predictions with ChromoGen}, were used for UMAP analysis. This analysis was performed using the umap-learn software package \cite{mcinnes2018umap} with default parameters for dimensionality reduction.
+
+
+\subsection*{Computing insulation scores from contact probability maps}
+
+We computed the insulation scores following algorithms introduced in prior literature \cite{crane2015condensin}. For a given genomic segment $i$, the insulation score, IS$_i$, is determined from the surrounding contacts as 
+\begin{equation}
+    \label{eq:ins_score}
+    \text{IS}_i = \log_2\left(\sum_{p=i-7}^{i-1}\sum_{q=i+1}^{i+7}M_{p,q}\right)
+\end{equation}
+where $M$ is the contact probability matrix.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{adjustwidth}{-.25in}{}
+% The title= option will undo the inverse indent used everywhere else
+\printbibliography[title={\hspace{.25in}References}]
+\end{adjustwidth}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Acknowledgments}
+
+\hl{"If applicable, begin the section with text that acknowledges non-author contributions. (Note this section does not have a general heading)." (}\href{https://www.science.org/doi/10.1126/sciadv.ado5560#acknowledgments}{This} \hl{paper has a good example, but I don't personally think we need one unless we want to acknowledge the GitHub repos we used/adapted.)}
+
+%%%%%%%%%%%
+\textbf{Funding:} This work was supported by the National Institutes of Health grant R35GM133580 (\hl{BZ}).
+\markblankline
+%%%%%%%%%%%
+\textbf{Author contributions:}\\
+\begin{adjustwidth}{.5in}{}
+Conceptualization: BZ and GS\\
+Data curation: GS and ZL\\
+Formal analysis: GS and ZL\\
+Funding acquisition: BZ\\
+Investigation: GS and ZL\\
+Methodology: BZ, GS, and ZL\\
+Project administration: BZ\\
+Resources: BZ, GS, and ZL\\
+Software: GS and ZL\\
+Supervision: BZ\\
+Validation: BZ, GS, and ZL\\
+Visualization: GS and ZL\\
+Writing—original draft: GS, BZ, and ZL\\
+Writing—review \& editing: GS, BZ, and ZL\\
+\end{adjustwidth}
+\mbox{}\newline
+\vspace{-.5em}
+%%%%%%%%%%%
+\textbf{Competing interests:} The authors declare no competing interests.
+\markblankline
+\textbf{Data and materials availability:} \hl{All data, code, and materials used in the analyses must be available in some form to any researcher for purposes of reproducing or extending the analyses. Include a note explaining any restrictions on materials, such as materials transfer agreements (MTAs). Include accession numbers to any data relevant to the paper and deposited in a public database; include a brief description of the dataset or model with the number.  The DMA statement should include the following: “All data are available in the main text or the supplementary materials.”}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Figures and Tables}
+
+\begin{figure}[H]
+    %\includegraphics[width=\textwidth]{Figure1_with_Hi-C_Distance.pdf}
+    \caption{\textbf{Illustration of the procedure followed by ChromoGen when making \emph{de novo} predictions of chromatin organization using sequence data.}
+    Before structures are generated, DNA sequence and chromatin accessibility data are converted into numerical embeddings by EPCOT. 
+    These embeddings are passed to a denoising diffusion probabilistic model, which uses a U-Net to gradually remove noise from a randomly generated distance map. 
+    The U-Net receives both the distance map and embedding at each time step to generate region- and cell type-specific samples.  
+    Finally, 3D coordinates are inferred from the fully denoised distance map. }
+    \label{fig:design}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    %\includegraphics[width=.92\textwidth]{Figure2.pdf}
+    \caption{
+    \textbf{ChromoGen accurately captures the conformational distribution observed in single-cell chromatin structures.} 
+    (a)
+    The distribution of spatial distances between monomers separated by one bond (left) and fifty bonds (right) are compared for conformations generated by ChromoGen (purple), Dip-C (orange), and a homopolymer model (green). 
+    (b)
+    The KL divergence between Dip-C and both ChromoGen (purple) and homopolymer (green) distance distributions such as in (a) is shown for all available loop sizes, i.e., from one bond to 63 bonds separating the relevant monomer pairs at 20 kb resolution. 
+    (c)
+    The radius of gyration distribution is shown for all conformations generated with ChromoGen (purple), Dip-C (orange), and the homopolymer model (green). 
+    The KL divergence between the Dip-C and ChromoGen (homopolymer) distributions is 0.0281 (0.0398). 
+    (d)
+    Probability distributions in two-dimensional UMAP embeddings for generated (top) and Dip-C structures (bottom).    
+    (e) Variations along the two UMAP embedding dimensions represent overall chromatin compaction (top) and the shifting of TAD boundaries (bottom), as shown by the corresponding average distance maps.
+    From left to right, the distance maps in the top row were computed by averaging the distance maps of chromatin conformations whose embedding has a UMAP 1 value within the range [3, 3.1], [8, 8.1], and [12, 12.1]. Similarly, from left to right, the bottom panels were computed using conformations whose embedding has a UMAP 2 value within the range [-1, -0.9], [1, 1.1], and [3, 3.1].
+    }
+    \label{fig:unguided_ensemble}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    %\includegraphics[width=.9\textwidth]{./biologically_accurate_mixed_contribution13.pdf}%{Figure3_Zhuohan.pdf}
+    \caption{
+    \textbf{ChromoGen conformations match experimental measurements at both the population and single-cell level.
+    }
+    (a-c)
+    The population Hi-C contact probability maps (left) are compared to population-median distance maps (center left) for both ChromoGen (lower triangle) and Dip-C (upper triangle) conformations in various genomic regions. 
+    Also shown are the distance maps (center) and 3D conformations (center right) for one ChromoGen (lower triangle, purple) and one Dip-C (upper triangle, yellow) conformation selected from the same set of conformations used in the population-median distance maps. The right panel overlays the UMAP-embedded Dip-C structures over the probability distribution of conformations embedded by the same transformation. 
+    (d) 
+    Probability distribution of the Pearson correlation coefficient, $\rho$, between ChromoGen and Dip-C median distances (left), between median distances and log Hi-C contact probabilities (center), and between experimental Hi-C contact probabilities and those inferred from distances (right). ChromoGen and Dip-C results are shown in purple and orange, respectively, in the last two plots. 
+    (e) The probability distribution of the RMSD between a given Dip-C structure from chromosome 22 and its best-aligned ChromoGen conformation generated in the same region is shown in orange. For comparison, the  distribution of RMSDs calculated using all pairs of Dip-C and ChromoGen conformations is shown in purple. 
+    (f) Comparison between the Pearson correlation coefficients of insulation scores computed using population Hi-C and those derived from distances. 
+    }
+    \label{fig:guided_ensemble}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    %\includegraphics[width=\textwidth]{./figures/GM_vs_IMR8.pdf}
+    \caption{
+    \textbf{ChromoGen produces accurate, cell-type specific chromatin conformations.}
+    (a)
+    In each of three regions, the experimental Hi-C interaction frequencies (left) and population-median, generated distance maps (right) are shown for both GM12878 (upper triangle) and IMR-90 (lower triangle) cell types. 
+    The DNase-seq accessibility data are shown for both IMR-90 (left) and GM12878 (right) cells.
+    (b) Distance maps of two ChromoGen structures from GM12878 and IMR-90 cells for the region in chromosome 21 shown in part a. The bottom panel shows the corresponding  probability distribution of boundary strength (left) and  probability for each genomic location to appear as a domain boundary in individual structures (right) in the same region for the two cell types, determined using an ensemble of generated conformation. 
+    (c) 
+    The distribution of Pearson correlation coefficients between median distances and log Hi-C contact probabilities (left) and between experimental Hi-C contact probabilities and those inferred from distances (right). Distances were determined using ChromoGen structures for the two cell types. 
+    (f) Comparison between the Pearson correlation coefficients of insulation scores computed using population Hi-C and those derived from ChromoGen distances for GM12878 and IMR-90 cells. 
+    }
+    \label{fig:transferability}
+\end{figure}
+
+\section*{Supplementary Materials}
+
+\hl{Annoyingly, the URL to the supplementary materials template is dead/gives a 404 error.}
+
+\end{document}
