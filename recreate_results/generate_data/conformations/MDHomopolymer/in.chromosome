@@ -1,0 +1,42 @@
+variable        rseed equal   4928864
+variable  T   world  0.7 0.8 0.9 1.0 1.1 1.2 1.3 
+#variable T equal 1.0
+
+units           lj
+atom_style      full
+boundary        s   s   s
+special_bonds   fene
+
+read_data       ./data500.polymer
+
+neighbor        0.4 bin
+neigh_modify    every 1 delay 1 
+atom_modify     sort 0 0.0
+
+#   ----    Force Field     ----
+bond_style      fene
+bond_coeff      1 30.0 1.5 1.0 1.0
+
+variable        epsilon equal 0.35
+pair_style      lj/cut 1.12
+pair_coeff      * * ${epsilon} 1.0 2.6
+
+thermo          2000
+thermo_style    custom time temp pe etotal epair ebond eangle press vol
+thermo_modify   norm no flush yes
+
+minimize        1.0e-4 1.0e-6 100 1000
+
+velocity        all create ${T} ${rseed} rot yes mom yes dist gaussian
+
+# --- normal temperature --- 
+dump            2 all dcd 5000 DUMP_FILE_temp${T}.dcd 
+dump_modify     2 unwrap yes
+
+timestep        0.005
+
+#fix             myfix all 
+fix             1 all nve
+fix             myfix all langevin ${T} ${T} 10.0 ${rseed}
+#run             10000000
+temper      1000000000 100 ${T} myfix 3847 58382

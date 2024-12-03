@@ -1,0 +1,72 @@
+#### From http://aeturrell.com/2018/01/31/publication-quality-plots-in-python/
+
+#### To load the style into the jupyter notebook/python script, use: 
+## plt.style.use('path/to/plot_style.txt')
+
+#### Before the style can be used for the first time, you must install helvetica.
+## conda install -c conda-forge mscorefonts
+## conda install -c "conda-forge/label/cf202003" mscorefonts
+## Also, must kill the jupyter kernel, delete the ~/.cache/matplotlib/fontlist-v330.json file,
+## restart the kernel, and try again. 
+
+
+xtick.color: 323034
+ytick.color: 323034
+text.color: 323034
+lines.markeredgecolor: black
+lines.markeredgewidth: 0.2
+patch.facecolor        : bc80bd
+patch.force_edgecolor  : True
+patch.linewidth: 0.8
+scatter.edgecolors: black
+grid.color: b1afb5
+
+figure.titlesize: 10
+axes.titlesize: 10
+legend.title_fontsize: 8
+xtick.labelsize: 8
+ytick.labelsize: 8
+legend.fontsize: 8
+
+axes.labelsize: 8
+font.size: 8
+
+axes.prop_cycle : (cycler('color', ['bc80bd' ,'fb8072', 'b3de69','fdb462','fccde5','8dd3c7','ffed6f','bebada','80b1d3', 'ccebc5', 'd9d9d9']))
+mathtext.fontset: stix
+font.family: Helvetica 
+pdf.fonttype: 42
+lines.linewidth: 2
+legend.frameon: True
+legend.framealpha: 0.8
+legend.edgecolor: 0.9
+legend.borderpad: 0.2
+legend.columnspacing: 1.5
+legend.labelspacing:  0.4
+text.usetex: False
+axes.titlelocation: center
+axes.formatter.use_mathtext: True
+axes.autolimit_mode: round_numbers
+axes.labelpad: 3
+axes.formatter.limits: -4, 4
+axes.labelcolor: black
+axes.edgecolor: black
+axes.linewidth: 0.6
+axes.spines.right : True ##False
+axes.spines.top : True ##False
+axes.grid: False
+
+text.latex.preamble: \usepackage{amsmath}
+figure.dpi: 300
+
+##xtick.labelsize: 16
+##ytick.labelsize: 16
+##font.size: 15
+##figure.autolayout: True
+##figure.figsize: 7.2,4.45
+##axes.titlesize : 16
+##axes.labelsize : 17
+##lines.linewidth : 2
+##lines.markersize : 6
+##legend.fontsize: 13
+##mathtext.fontset: stix
+##font.family: STIXGeneral

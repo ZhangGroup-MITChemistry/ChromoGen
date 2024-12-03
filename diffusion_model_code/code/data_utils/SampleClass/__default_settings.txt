@@ -1,6 +1,0 @@
-# TEST COMMENT
-avoid_gpu = False
-high_precision_computations=True
-    # Test CoMMneT 2 # 
-dtype=None
-device=None

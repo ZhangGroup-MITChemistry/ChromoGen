@@ -1,0 +1,14 @@
+{
+    "inputs":{
+        "assemblies":{
+            "hg19":"https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz",
+            "hg38":"https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz"
+        },
+        "DNase-seq":{
+            "hg19":{
+                "GM12878":"https://encode-public.s3.amazonaws.com/2017/09/06/e2259e48-add5-4b57-bc75-e27b290b954f/ENCFF901GZH.bigWig",
+                "IMR90":"https://encode-public.s3.amazonaws.com/2017/09/27/ab857d71-030e-41f1-9034-69c1355a6821/ENCFF291DOH.bigWig"
+            }
+        }
+    }
+}

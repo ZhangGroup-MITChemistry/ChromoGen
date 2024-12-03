@@ -1,0 +1,30 @@
+#!/bin/bash -l
+
+#SBATCH --job-name=1.95
+#SBATCH --output=job.o
+#SBATCH --ntasks=21#--ntasks=7
+#SBATCH --nodes=1
+##SBATCH --cpus-per-task=1#--cpus-per-task=1
+#SBATCH --partition=xeon-p8 #sched_mit_binz
+##SBATCH --partition=sched_mit_binz_long,sched_mit_binz,sched_mit_binz_gpu
+##SBATCH --exclude=node[250-300,461,453]
+##SBATCH --time=48:00:00
+##SBATCH --exclusive
+#SBATCH --mem-per-cpu=4G
+##SBATCH --gres=gpu:1
+#SBATCH --export=ALL
+
+#module add engaging/mvapich2/2.2rc1_gcc-4.4.7  
+#module load engaging/mvapich2/2.2rc1_gcc-4.4.7
+#module add mvapich2/gcc
+module load mpi/openmpi-4.1.1
+#module load temper
+lammpsdir="/home/binz/Packages/lammps2016-Genome/src/"
+lammpsdir="/home/gkks/apps/lammps-3Mar20/src"
+#lammpsdir="/home/gkks/lammps_replica/src"
+#lammpsdir="/home/gkks/lammps/src"
+lammpsdir="/home/gridsan/gschuette/lammps-stable_3Mar2020/src"
+
+#mpirun -np 14 -partition $lammpsdir/lmp_mpi -in in.chromosome
+mpirun -np 21 $lammpsdir/lmp_mpi -partition 7x3 -in in.chromosome
+
