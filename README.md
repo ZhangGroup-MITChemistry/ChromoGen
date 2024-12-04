@@ -8,8 +8,12 @@
     - [Requirements](#requirements)
     - [Installation](#installation)
         - [Clone repository](#clone-repository)
-        - [Create and activate an environment with all dependencies](#create-and-activate-an-environment-with-all-dependencies)
+        - [Create and activate a dedicated environment](#create-and-activate-a-dedicated-environment)
         - [Install ChromoGen package](#install-chromogen-package)
+    - [Download and reproduce results](#download-and-reproduce-results)
+        - [File descriptions and reproducing script locations](#file-descriptions-and-reproducing-script-locations)
+        - [Obtain Zenodo-preserved code](#obtain-zenodo-preserved-code)
+        - [Obtain Zenodo-preserved data](#obtain-zenodo-preserved-data)
     - [Preparing sequencing inputs](#preparing-sequencing-inputs)
     - [Generating conformations](#generating-structures)
     - [Analyzing conformations](#analyzing-conformations)
@@ -26,18 +30,16 @@ As introduced in ["ChromoGen: Diffusion model predicts single-cell chromatin con
 
 Predicting genome conformations (and recreating the results of our manuscript) requires three things:
 1. You need to install the ChromoGen package, which corresponds to code inside `./src/`. See [Installation](#installation) for details.
-2. You must either train your own version of ChromoGen or download our model parameters, which will be made available for download upon our paper's final publication. 
+2. You must either train your own version of ChromoGen or download our model parameters. See [Obtain Zenodo-preserved data](#obtain-zenodo-preserved-data)) for details. 
 3. You must download/prepare the sequencing data relevant to the assembly and cell type of interest to you. See [Preparing sequencing inputs](#preparing-sequencing-inputs) for details. 
 
-The scripts inside `./recreate_results/` will reproduce the results of our paper using that package and, therefore, includes plenty of examples of how to use the ChromoGen package. Otherwise, see [Preparing sequencing inputs](#preparing-sequencing-inputs), [Generating conformations](#generating-structures), [Analyzing conformations](#analyzing-conformations) for a more intentional introduction to the package. 
-
-The data from our paper -- both model parameters and conformations -- will be made available for download upon our paper's final publication. 
+If your main goal is to reproduce our results, see [Download and reproduce results](#download-and-reproduce-results). Otherwise, skip to [Preparing sequencing inputs](#preparing-sequencing-inputs), [Generating conformations](#generating-structures), [Analyzing conformations](#analyzing-conformations) for a more intentional introduction to the ChromoGen package. 
 
 ## References
 
 "ChromoGen: Diffusion model predicts single-cell chromatin conformations":
-- [Preprint URL](https://doi.org/10.21203/rs.3.rs-4630850/v1)
-- Data: Download URL TBD
+- Research Square-hosted [preprint](https://doi.org/10.21203/rs.3.rs-4630850/v1)
+- Zenodo-hosted [dataset](https://doi.org/10.5281/zenodo.14218666)
 
 ## Using ChromoGen
 
@@ -58,35 +60,32 @@ Navigate to the directory where you want to clone the repository, then run
 git clone git@github.com:ZhangGroup-MITChemistry/ChromoGen.git
 ```
 
-#### Create and activate an environment with all dependencies
+If you'd prefer to use the Zenodo-preserved version of the code, see [Obtain Zenodo-preserved code](#obtain-zenodo-preserved-code). Note that, as of the Zenodo dataset's creation date, they are identical. 
 
-First, enter the directory created when you cloned the repo
-```bash
-cd ChromoGen
-```
+#### Create and activate a dedicated environment
 
-Now create a ChromoGen-valid `conda`/`mamba` environment by running
-```bash
-conda env create -f environment.yml
-```
-or
-```bash
-mamba env create -f environment.yml
-```
-(If you have `mamba` installed, we recommend the latter since it will be _much_ faster.)
+Now, create a dedicated environment in which to use the ChromoGen package, which we verified using Python 3.10.12. For your reference, this repo includes the YAML file exported from the environment we used, `environment.yml`, but conda unfortunately fails to install directly from that file.
 
-Afterwards, activate the environment by running
+Instead, create a new environment like so:
+```bash
+conda create -n ChromoGen python=3.10.12 mamba jupyterlab pip=23.2.1 GEOparse=2.0.4 hic2cool --no-default-packages -c conda-forge -c anaconda -c bioconda -c hcc
+```
+A few notes about this:
+1. This will run much faster if you replace `conda` with `mamba`, assuming you have that installed.
+2. While not requirements of the ChromoGen package, we also install:
+    1. `jupyterlab` so that you can run the jupyter notebooks inside `./recreate_results/create_figures/`;
+    2. `mamba` to accelerate any additional changes you want to make to the environment;
+    3. `pip 23.2.1` because that's the version we used; and
+    4. `GEOparse` and `hic2cool` because certain scripts in `./recreate_results/` require them.
+
+Activate your new environment before moving to the next section:
 ```bash
 conda activate ChromoGen
-```
-or
-```bash
-mamba activate ChromoGen
 ```
 
 #### Install ChromoGen package
 
-Without changing directories and with the ChromoGen environment activated, run
+Inside your new `conda` environment, navigate to the directory containing this README file and `setup.py` and run
 ```bash
 pip install . 
 ```
@@ -94,6 +93,78 @@ Once complete, the ChromoGen package can be imported in Python using:
 ```python
 import ChromoGen
 ``` 
+
+### Download and reproduce results
+
+#### File descriptions and reproducing script locations
+
+All data associated with the first ChromoGen publication is preserved on Zenodo with DOI [`10.5281/zenodo.14218666`](https://doi.org/10.5281/zenodo.14218666). It is spread across six files:
+1. `chromogen_code.tar.gz` contains all code and, as of its upload date, is identical to this repo.
+2. `epcot_final.pt` contains the fine-tuned EPCOT parameters.
+    - To independently fine-tune EPCOT, see `./recreate_results/train/EPCOT/`.
+3. `chromogen.pt` contains the complete set of ChromoGen model parameters, including both the relevant EPCOT parameters and all diffusion model parameters.
+    - To independently train the diffusion model, see `./recreate_results/train/diffusion_model/README.md`.
+4. `conformations.tar.gz` contains all conformations analyzed in the manuscript, including the Dip-C conformations formatted in an HDF5 file, all ChromoGen-inferred conformations, and the MD-generated MD homopolymer conformations. Descriptively named subdirectories organize the data.
+    - To generate data equivalent to `conformations/MDHomopolymer/DUMP_FILE.dcd`, run either `job.pbs` or `run.sh` within `./recreate_results/generate_data/conformations/MDHomopolymer/`.
+    - To generate data equivalent to `conformations/ChromoGen/genome_wide/` run `./recreate_results/generate_data/conformations/genome_wide.py`
+    - To generate data equivalent to `conformations/ChromoGen/specific_regions/` run `./recreate_results/generate_data/conformations/independent_regions.py`
+    - To generate data equivalent to `conformations/ChromoGen/unguided/` run `./recreate_results/generate_data/conformations/unguided_conformations_for_S11.py`
+    - To recreate `conformations/DipC/processed_data.h5`, run `./recreate_results/outside_data/dipc/process_3DG_science_2018.py`
+5. `outside_data.tar.gz` contains two subdirectories:
+    1. `inputs` contains our pre-processed genome assembly file (produced as in [Preparing sequencing inputs](#preparing-sequencing-inputs)).
+      - You'll also need to place the BigWig files in here, as in the script below.
+      - To recreate the included `hg19.h5` file and format the DNase-seq data for training EPCOT, run `./recreate_results/outside_data/sequence_data/prepare_chromogen_inputs.py`.
+      - [Preparing sequencing inputs](#preparing-sequencing-inputs) includes general instructions for formatting ChromoGen input data. 
+    2. `training_data` contains the Dip-C conformations formatted in an HDF5 file.
+      - To recreate this file, run `./recreate_results/outside_data/dipc/process_3DG_science_2018.py`.
+6. `embeddings.tar.gz` contains the fine-tuned EPCOT-generated sequence embeddings for each region included in the diffusion model's training set.
+    - To reproduce each file, run `./recreate_results/generate_data/EPCOT/generate_embeddings.py --chromosome <chrom>` 23 times using `<chrom>` values of 1, 2, 3, ..., 22, and X.
+
+See `./recreate_results/create_figures/Figure_2/UMAP_scripts/README.md` for instructions on recreating the various UMAP figure panels. All other figures that require computational work are produced by the Jupyter Notebooks within the relevant subdirectories of `./recreate_results/create_figures/`.
+
+Some of these require Hi-C data, which we do not included on Zenodo since we didn't originate the data. This includes:
+1. Hi-C data, which can be downloaded and prepared at 20 kb resolution using `./recreate_results/outside_data/hic/download_and_process.sh`;
+2. DNase-seq data, which is downloaded by `./recreate_results/outside_data/sequence_data/prepare_chromogen_inputs.py`; and
+3. Chromatin tracing structures, which you can download and prepare following the instructions within `./recreate_results/create_figures/Figure_S1/bintu_data/README.md`.
+
+#### Obtain Zenodo-preserved code
+
+If you want to use the Zenodo-preserved code rather than the GitHub-hosted version, then navigate to the directory where you'd like to place the code and run
+```bash
+wget https://zenodo.org/records/14218666/chromogen_code.tar.gz
+tar -xvzf chromogen_code.tar.gz
+rm chromogen_code.tar.gz
+```
+
+Otherwise, continue to the next step. 
+
+#### Obtain Zenodo-preserved data
+
+For the scripts within `./recreate_results/` to run properly, these files must be downloaded and decompressed placed in the correct locations within the repo. To do so, navigate to the directory containing this file and run the following:
+```bash
+# Create the directories that'll contain the data
+mkdir -p recreate_results/downloaded_data/models
+cd recreate_results/downloaded_data
+
+# Download all the data
+wget https://zenodo.org/records/14218666/conformations.tar.gz &
+wget https://zenodo.org/records/14218666/embeddings.tar.gz &
+wget https://zenodo.org/records/14218666/outside_data.tar.gz &
+cd models
+wget https://zenodo.org/records/14218666/chromogen.pt &
+wget https://zenodo.org/records/14218666/epcot_final.pt &
+cd ..
+wait 
+
+# Untar the three tarballs
+tar -xvzf conformations.tar.gz &
+tar -xvzf embeddings.tar.gz &
+tar -xvzf outside_data.tar.gz &
+wait
+
+# Remove the now-unneeded tarballs
+rm conformations.tar.gz embeddings.tar.gz outside_data.tar.gz
+```
 
 ### Preparing sequencing inputs
 
