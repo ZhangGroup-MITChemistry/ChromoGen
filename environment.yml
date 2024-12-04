@@ -1,4 +1,4 @@
-name: ChromoGen_test
+name: ChromoGen
 channels:
   - nvidia
   - huggingface
@@ -508,4 +508,4 @@ dependencies:
     - werkzeug==2.3.7
     - wrapt==1.15.0
     - xformers==0.0.21
-prefix: ~/.conda/envs/ChromoGen_test
+prefix: ~/.conda/envs/ChromoGen
