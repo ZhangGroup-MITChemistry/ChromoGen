@@ -135,6 +135,7 @@ wget https://zenodo.org/records/14218666/files/chromogen_code.tar.gz
 tar -xvzf chromogen_code.tar.gz
 rm chromogen_code.tar.gz
 ```
+and go back to step [Create and activate a dedicated environment](#create-and-activate-a-dedicated-environment). 
 
 Otherwise, continue to the next step. 
 
