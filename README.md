@@ -131,7 +131,7 @@ Some of these require Hi-C data, which we do not included on Zenodo since we did
 
 If you want to use the Zenodo-preserved code rather than the GitHub-hosted version, then navigate to the directory where you'd like to place the code and run
 ```bash
-wget https://zenodo.org/records/14218666/chromogen_code.tar.gz
+wget https://zenodo.org/records/14218666/files/chromogen_code.tar.gz
 tar -xvzf chromogen_code.tar.gz
 rm chromogen_code.tar.gz
 ```
@@ -147,12 +147,12 @@ mkdir -p recreate_results/downloaded_data/models
 cd recreate_results/downloaded_data
 
 # Download all the data
-wget https://zenodo.org/records/14218666/conformations.tar.gz &
-wget https://zenodo.org/records/14218666/embeddings.tar.gz &
-wget https://zenodo.org/records/14218666/outside_data.tar.gz &
+wget https://zenodo.org/records/14218666/files/conformations.tar.gz &
+wget https://zenodo.org/records/14218666/files/embeddings.tar.gz &
+wget https://zenodo.org/records/14218666/files/outside_data.tar.gz &
 cd models
-wget https://zenodo.org/records/14218666/chromogen.pt &
-wget https://zenodo.org/records/14218666/epcot_final.pt &
+wget https://zenodo.org/records/14218666/files/chromogen.pt &
+wget https://zenodo.org/records/14218666/files/epcot_final.pt &
 cd ..
 wait 
 
