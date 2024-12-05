@@ -47,8 +47,6 @@ If your main goal is to reproduce our results, see [Download and reproduce resul
 
 To run the installation, you will need to install `conda` or (for faster installation/environment management) `mamba`. Our tests used the `mamba` commands with `mamba 1.4.2` and `conda 23.3.1` installed. 
 
-[comment]: ChromoGen relies on several packages, most principally `Python 3.10.12`, `PyTorch 2.0.1` for the model and data processing, `pyBigWig 0.3.22` for handling BigWig-formatted DNase-seq files, and `matplotlib 3.7.5` for visualization. A number of other packages are required, which are included in the YAML file referenced in the next subsection. 
-
 To make structure predictions with ChromoGen, you'll also need to download the model file (download URL TBD), BigWig-formatted DNAse-seq data for the cell type of interest to you, and create an HDF5-formatted DNA sequence file (see [Preparing sequencing inputs](#preparing-sequencing-inputs)). 
 
 ### Installation
